@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  font-family: 'Spartan', sans-serif;
 }
 
 .App-logo {
@@ -35,4 +35,82 @@
   to {
     transform: rotate(360deg);
   }
+}
+.btnsign{
+  width: 100%;
+}
+@media only screen and (max-width: 991px){
+  .btnsign{
+    width: 93vw;
+  }
+  .slide-hotel{
+    height: 1000px;
+  }
+  .slide-hotel img{
+    width: 120vw;
+  }
+}
+.slide-hotel{
+  height: 450px;
+  background-color: rgb(39, 39, 39);
+}
+.slide-hotel img{
+  height: 100vh;
+  opacity: 0.8;
+}
+@media only screen and (max-width: 1024px){
+  .slide-hotel{
+    height: 550px;
+  }
+  .slide-hotel img{
+    height: 100%;
+  }
+}
+.manage_img{
+  width: 100%;
+  height: 180px;
+}
+.manage_img img{
+  height: 100%;
+}
+.Addimg{
+  width: 100%;
+  height: 400px;
+  text-align: center;
+}
+.Addimg img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.Addimg input{
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  width: 300px;
+}
+.Addimg div{
+  width: 100%;
+  height: 360px;
+  background-image: url("./pic/upload.png");
+  background-repeat: no-repeat;
+  background-size: 100% 360px;
+}
+.room div{
+  width: 100%;
+  height: 150px;
+  background-image: url("./pic/upload.png");
+  background-repeat: no-repeat;
+  background-size: 100% 90%;
+}
+.room img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.room input{
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  width: 100%;
 }
