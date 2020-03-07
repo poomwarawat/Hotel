@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import firebase from 'firebase'
+import { Progress } from 'reactstrap';
+import API from '../api/api'
 
 export default class Addroom extends Component {
     constructor(props){
@@ -8,16 +11,34 @@ export default class Addroom extends Component {
             smallPic : null,
             smallPrice : null,
             smallData : null,
+            smallPicPer : null,
             middlePic : null,
             middlePrice : null,
             middleData : null,
+            middlePicPer : null,
             largePic : null,
             largePrice : null,
             largeData : null,
+            largePicPer : null,
             name : "",
             details : "",
-            location : ""
+            location : "",
+            userEmail : localStorage.getItem("email"),
+            messag : ""
         }
+        var firebaseConfig = {
+            apiKey: "AIzaSyBYnithf7NH2J6LuUI6JXPkw84v2bdqRWg",
+            authDomain: "hotel-90db9.firebaseapp.com",
+            databaseURL: "https://hotel-90db9.firebaseio.com",
+            projectId: "hotel-90db9",
+            storageBucket: "hotel-90db9.appspot.com",
+            messagingSenderId: "624144125372",
+            appId: "1:624144125372:web:18d1e857e5d32eb328efb9"
+          };
+          // Initialize Firebase
+          if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+         }
     }
 
     renderRoom = () =>{
@@ -53,7 +74,8 @@ export default class Addroom extends Component {
         }
     }
     handleClick = () =>{
-        console.log(this.state)
+        API.post("/management/uploadHotelData", this.state)
+        .then(res => console.log(res))
     }
     handleChange = (e) =>{
         const name = e.target.id
@@ -65,9 +87,30 @@ export default class Addroom extends Component {
     onChanges = (e) =>{
         const name = e.target.name
         const value = e.target.files[0]
-        this.setState({
-            [name] : URL.createObjectURL(value)
-        })
+
+        const storageRef = firebase.storage().ref(`${this.state.userEmail}/${name}`);
+        const task = storageRef.put(value)
+
+        task.on(`state_changed` , (snapshort) => {
+            const namePer = name+"Per"
+            let percentage = (snapshort.bytesTransferred / snapshort.totalBytes) * 100;
+            this.setState({
+                [namePer] : percentage
+            })
+        } , (error) => {
+            this.setState({
+                messag:`Upload error : ${error.message}`
+            })
+        } , () => {
+            this.setState({
+                messag:`Upload Success`,
+            })
+            task.snapshot.ref.getDownloadURL().then((downloadUrl) =>{
+                this.setState({
+                    [name] : downloadUrl
+                })
+            })
+        })        
     }
     render() {
         return (
@@ -94,6 +137,11 @@ export default class Addroom extends Component {
                                 </div>
                                 <input type="file" onChange={this.onChanges} name="smallPic"></input>
                             </div>
+                            <Progress className="mt-2 mb-2" color="info" value={this.state.smallPicPer} />
+                            <p>Price</p>
+                            <input type="text" className="form-control" onChange={this.handleChange} id="smallPrice" placeholder="room price(Baht)"></input>
+                            <p>Details</p>
+                            <input type="text" className="form-control" onChange={this.handleChange} id="smallData" placeholder="room details"></input>
                         </div>
                         <div className="col-sm-4 col-12">
                             <div className="room">
@@ -102,6 +150,11 @@ export default class Addroom extends Component {
                                 </div>
                                 <input type="file" onChange={this.onChanges} name="middlePic"></input>
                             </div>
+                            <Progress className="mt-2 mb-2" color="info" value={this.state.middlePicPer} />
+                            <p>Price</p>
+                            <input type="text" className="form-control" onChange={this.handleChange} id="middlePrice" placeholder="room price(Baht)"></input>
+                            <p>Details</p>
+                            <input type="text" className="form-control" onChange={this.handleChange} id="middleData" placeholder="room details"></input>
                         </div>
                         <div className="col-sm-4 col-12">
                             <div className="room">
@@ -110,6 +163,11 @@ export default class Addroom extends Component {
                                 </div>
                                 <input type="file" onChange={this.onChanges} name="largePic"></input>
                             </div>
+                            <Progress className="mt-2 mb-2" color="info" value={this.state.largePicPer} />
+                            <p>Price</p>
+                            <input type="text" className="form-control" onChange={this.handleChange} id="largePrice" placeholder="room price(Baht)"></input>
+                            <p>Details</p>
+                            <input type="text" className="form-control" onChange={this.handleChange} id="largeData" placeholder="room details"></input>
                         </div>
                         
                     </div><br></br>

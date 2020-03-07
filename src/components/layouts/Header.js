@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Link, Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 export default class Header extends Component {
     renderLink = () =>{
@@ -8,7 +8,7 @@ export default class Header extends Component {
                 <div>
                     <div className="btn-group">
                     <button type="button" className="btn btn-info dropdown-toggle btnsign" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        username
+                        {localStorage.getItem("email")}
                     </button>
                     <div className="dropdown-menu dropdown-menu-right">
                         <Link to="/management_panel">
@@ -18,13 +18,11 @@ export default class Header extends Component {
                         <button className="dropdown-item" onClick={this.handleSignOut}>Sign Out</button>
                     </div>
                     </div>
-                    
                 </div>
             )
         }else{
             return(
                 <div>
-                    <Redirect to="/signin" />
                     <Link to="/signin">
                         <button className="btn btn-info btnsign">Sign In</button>
                     </Link>
@@ -32,8 +30,9 @@ export default class Header extends Component {
             )
         }
     }
-    handleSignOut = (e) =>{
+    handleSignOut = () =>{
         localStorage.removeItem("auth-token")
+        this.props.history.push("/")
         window.location.reload()
     }
     render() {

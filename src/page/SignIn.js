@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import API from '../api/api'
 
-export default class SignIn extends Component {
+class SignIn extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -25,6 +25,7 @@ export default class SignIn extends Component {
         .then(res => {
             if(res.data.name === "tokenname"){
                 console.log(res.data)
+                localStorage.setItem("email", res.data.users.email)
                 localStorage.setItem("auth-token", res.data.value)
                 this.props.history.push('/')
                 window.location.reload()
@@ -54,3 +55,5 @@ export default class SignIn extends Component {
         )
     }
 }
+
+export default SignIn
