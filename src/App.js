@@ -34,8 +34,8 @@ class App extends Component{
           <Route path="/signin" component={SignIn}></Route>
           <Route path="/register" component={Register}></Route>
           <Route path="/admin_register" component={AdminRegister}></Route>
-          <Route path="/hotel/:id" component={HotelPage} exact></Route>
-          <Route path="/hotel/:id/:type" component={Booking}></Route>
+          <PrivateRoute path="/hotel/:id" component={HotelPage} exact></PrivateRoute>
+          <PrivateRoute path="/hotel/:id/:type" component={Booking}></PrivateRoute>
         </div>
       </div>
     );
