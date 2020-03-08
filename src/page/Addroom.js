@@ -24,7 +24,10 @@ export default class Addroom extends Component {
             details : "",
             location : "",
             userEmail : localStorage.getItem("email"),
-            messag : ""
+            messag : "",
+            showAdd : "",
+            showHotel : "none",
+            loadHotel : []
         }
         var firebaseConfig = {
             apiKey: "AIzaSyBYnithf7NH2J6LuUI6JXPkw84v2bdqRWg",
@@ -40,7 +43,19 @@ export default class Addroom extends Component {
             firebase.initializeApp(firebaseConfig);
          }
     }
-
+    componentDidMount(){
+        API.post('/management/listHotelnames', this.state)
+        .then(res => {
+            if(res.data){
+                this.setState({
+                    loadHotel : this.state.loadHotel.concat(res.data),
+                    showAdd : "none",
+                    showHotel : ""
+                })
+            }
+            console.log(this.state.loadHotel)
+        })
+    }
     renderRoom = () =>{
         if(this.state.smallPic !=null){
             return(
@@ -75,7 +90,7 @@ export default class Addroom extends Component {
     }
     handleClick = () =>{
         API.post("/management/uploadHotelData", this.state)
-        .then(res => console.log(res))
+        window.location.reload()
     }
     handleChange = (e) =>{
         const name = e.target.id
@@ -113,8 +128,15 @@ export default class Addroom extends Component {
         })        
     }
     render() {
+        const ShowAdd = {
+            display : this.state.showAdd
+        }
+        const ShowHotel = {
+            display : this.state.ShowHotel
+        }
         return (
-            <div>
+            <div className="container">
+                <div style={ShowAdd}>
                 <div className="Addimg">
                     <div>
                         {
@@ -177,6 +199,51 @@ export default class Addroom extends Component {
                     <input type="text" className="form-control" onChange={this.handleChange} placeholder="location" id="location"></input><br></br>
                     <button className="btn btn-primary w-100 mb-4" onClick={this.handleClick}>UPLOAD</button>
                 </div>
+            </div>
+            <div style={ShowHotel}>
+                {
+                    this.state.loadHotel.map((datas) =>{
+                        return(
+                            <div className="MyRoom" key={datas._id}>
+                                <div className="row">
+                                    <div className="col-sm-5 col-12 mt-2">
+                                        <div className="boximg">
+                                            <img className="w-100" alt="HotelPicture" src={datas.picHead}></img>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-7 col-12 mt-2 ">
+                                        <h3>Hotel name : {datas.name}</h3>
+                                        <p>Details : {datas.details}</p>
+                                        <p>Contact : {datas.contact}</p>
+                                        <p>Location : {datas.location}</p>
+                                        <p>Create post : {datas.Create}</p>
+                                        <button className="btn btn-primary">Edit data</button>
+                                        <button className="btn btn-danger ml-2">Delete data</button>
+                                    </div>
+                                    <div className="col-sm-3 col-12 mt-4 room">
+                                        <p>Small room</p>
+                                        <img src={datas.smallPic} alt="smallroom" className="mb-2"></img>
+                                        <p>Price : {datas.smallPrice}</p>
+                                        <p>Details : {datas.smallData}</p>
+                                    </div>
+                                    <div className="col-sm-3 col-12 mt-4 room">
+                                        <p>Middle room</p>
+                                        <img src={datas.middlePic} alt="middleroom" className="mb-2"></img>
+                                        <p>Price : {datas.middlePrice}</p>
+                                        <p>Details : {datas.middleData}</p>
+                                    </div>
+                                    <div className="col-sm-3 col-12 mt-4 room">
+                                        <p>Large room</p>
+                                        <img src={datas.largePic} alt="largeroom" className="mb-2"></img>
+                                        <p>Price : {datas.largePrice}</p>
+                                        <p>Details : {datas.largeData}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
             </div>
         )
     }

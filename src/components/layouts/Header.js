@@ -4,22 +4,38 @@ import {Link} from 'react-router-dom'
 export default class Header extends Component {
     renderLink = () =>{
         if(localStorage.getItem("auth-token")){
-            return(
-                <div>
+            if(localStorage.getItem("auth-status") == "normal"){
+                return(
+                    <div>
                     <div className="btn-group">
                     <button type="button" className="btn btn-info dropdown-toggle btnsign" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {localStorage.getItem("email")}
                     </button>
                     <div className="dropdown-menu dropdown-menu-right">
-                        <Link to="/management_panel">
-                            <button className="dropdown-item" type="button">Admin management</button>
-                        </Link>
                         <button className="dropdown-item" type="button">Profile setting</button>
                         <button className="dropdown-item" onClick={this.handleSignOut}>Sign Out</button>
                     </div>
                     </div>
                 </div>
-            )
+                )
+            }else{
+                return(
+                    <div>
+                        <div className="btn-group">
+                        <button type="button" className="btn btn-info dropdown-toggle btnsign" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {localStorage.getItem("email")}
+                        </button>
+                        <div className="dropdown-menu dropdown-menu-right">
+                            <Link to="/management_panel">
+                                <button className="dropdown-item" type="button">Admin management</button>
+                            </Link>
+                            <button className="dropdown-item" type="button">Profile setting</button>
+                            <button className="dropdown-item" onClick={this.handleSignOut}>Sign Out</button>
+                        </div>
+                        </div>
+                    </div>
+                )
+            }
         }else{
             return(
                 <div>
@@ -32,6 +48,8 @@ export default class Header extends Component {
     }
     handleSignOut = () =>{
         localStorage.removeItem("auth-token")
+        localStorage.removeItem("email")
+        localStorage.removeItem("auth-status")
         this.props.history.push("/")
         window.location.reload()
     }

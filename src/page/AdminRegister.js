@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import API from '../api/api'
 
-export default class Register extends Component {
+export default class AdminRegister extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -29,7 +29,7 @@ export default class Register extends Component {
     handleClick = (e) =>{
         const {name, lastname, birth, email, password, repassword } = this.state
         e.preventDefault()
-        API.post('/user/register', {name, lastname, birth, email, password, repassword})
+        API.post('/user/Admin_register', {name, lastname, birth, email, password, repassword})
         .then(res =>{
             if(res){
                 alert("Register is success")
@@ -45,7 +45,7 @@ export default class Register extends Component {
         return (
             <div className="register">
                 <div className="container">
-                    <h1>Register</h1>
+                    <h1>Admin Register</h1>
                    <div className="row">                       
                        <div className="col-sm-4 col-12">
                             <p>name</p>
