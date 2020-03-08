@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import firebase from 'firebase'
 import { Progress } from 'reactstrap';
 import API from '../api/api'
+import Footer from '../components/layouts/Footer'
 
 export default class Addroom extends Component {
     constructor(props){
@@ -135,7 +136,8 @@ export default class Addroom extends Component {
             display : this.state.ShowHotel
         }
         return (
-            <div className="container">
+            <div>
+                <div className="container">
                 <div style={ShowAdd}>
                 <div className="Addimg">
                     <div>
@@ -244,6 +246,8 @@ export default class Addroom extends Component {
                     })
                 }
             </div>
+            </div>
+            <Footer></Footer>
             </div>
         )
     }

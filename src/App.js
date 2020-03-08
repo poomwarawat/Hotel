@@ -13,6 +13,9 @@ import Addroom from './page/Addroom'
 import StatusRoom from './page/StatusRoom'
 import Reviews from './page/Reviews'
 import AdminRegister from './page/AdminRegister'
+import HotelPage from './page/HotelPage'
+import Booking from './page/Booking'
+import Mybooking from './page/Mybooking'
 
 class App extends Component{
   render(){
@@ -26,10 +29,13 @@ class App extends Component{
           <PrivateRoute path="/management_panel/addHotel" component={Addroom}></PrivateRoute>
           <PrivateRoute path="/management_panel/check_statusRoom" component={StatusRoom}></PrivateRoute>
           <PrivateRoute path="/management_panel/review_comment_view" component={Reviews}></PrivateRoute>
+          <PrivateRoute path="/Mybooking" component={Mybooking}></PrivateRoute>
           <Route path="/contact" component={Contact}></Route>
           <Route path="/signin" component={SignIn}></Route>
           <Route path="/register" component={Register}></Route>
           <Route path="/admin_register" component={AdminRegister}></Route>
+          <Route path="/hotel/:id" component={HotelPage} exact></Route>
+          <Route path="/hotel/:id/:type" component={Booking}></Route>
         </div>
       </div>
     );

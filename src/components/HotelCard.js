@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class HotelCard extends Component {
+    constructor(props){
+        super(props)
+        console.log(this.props.data)
+    }
     render() {
         return (
             <div>
@@ -11,7 +16,9 @@ export default class HotelCard extends Component {
                 <div className="card-body">
                     <h5 className="card-title">{this.props.name}</h5>
                     <p className="card-text">{this.props.details}.</p>
-                    <button className="btn btn-primary">Go somewhere</button>
+                    <Link to={`/hotel/${this.props.data._id}`}>
+                        <button className="btn btn-primary" id={this.props.data._id}>View details</button>
+                    </Link>
                 </div>
                 </div>
             </div>

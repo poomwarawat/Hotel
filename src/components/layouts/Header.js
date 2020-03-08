@@ -4,15 +4,18 @@ import {Link} from 'react-router-dom'
 export default class Header extends Component {
     renderLink = () =>{
         if(localStorage.getItem("auth-token")){
-            if(localStorage.getItem("auth-status") == "normal"){
+            if(localStorage.getItem("auth-status") === "normal"){
                 return(
                     <div>
                     <div className="btn-group">
-                    <button type="button" className="btn btn-info dropdown-toggle btnsign" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button className="btn btn-info dropdown-toggle btnsign" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {localStorage.getItem("email")}
                     </button>
                     <div className="dropdown-menu dropdown-menu-right">
-                        <button className="dropdown-item" type="button">Profile setting</button>
+                        <button className="dropdown-item">Profile setting</button>
+                        <Link to="/Mybooking">
+                            <button className="dropdown-item">My booking</button>
+                        </Link>
                         <button className="dropdown-item" onClick={this.handleSignOut}>Sign Out</button>
                     </div>
                     </div>
@@ -22,14 +25,17 @@ export default class Header extends Component {
                 return(
                     <div>
                         <div className="btn-group">
-                        <button type="button" className="btn btn-info dropdown-toggle btnsign" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button className="btn btn-info dropdown-toggle btnsign" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {localStorage.getItem("email")}
                         </button>
                         <div className="dropdown-menu dropdown-menu-right">
                             <Link to="/management_panel">
-                                <button className="dropdown-item" type="button">Admin management</button>
+                                <button className="dropdown-item" >Admin management</button>
                             </Link>
                             <button className="dropdown-item" type="button">Profile setting</button>
+                            <Link to="/Mybooking">
+                                <button className="dropdown-item">My booking</button>
+                            </Link>
                             <button className="dropdown-item" onClick={this.handleSignOut}>Sign Out</button>
                         </div>
                         </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Picslide from '../components/Picslide'
 import API from '../api/api'
 import HotelCard from '../components/HotelCard'
+import Footer from '../components/layouts/Footer'
 
 export default class Home extends Component {
     constructor(props){
@@ -18,7 +19,6 @@ export default class Home extends Component {
                     Hotel : this.state.Hotel.concat(res.data)
                 })
             }
-            console.log(this.state.Hotel)
         })
     }
     render() {
@@ -31,7 +31,8 @@ export default class Home extends Component {
                         this.state.Hotel.map((Hotels) =>{
                             return(
                                 <div className="col-sm-4 col-12" key={Hotels._id}>
-                                <HotelCard key={Hotels._id} name={Hotels.name}
+                                <HotelCard data={Hotels} 
+                                name={Hotels.name}
                                 details={Hotels.details} 
                                 location={Hotels.location}
                                 image={Hotels.picHead}></HotelCard>
@@ -41,6 +42,7 @@ export default class Home extends Component {
                     }
                 </div>
                 </div>
+                <Footer></Footer>
             </div>
         )
     }
