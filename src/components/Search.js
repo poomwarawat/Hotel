@@ -1,17 +1,9 @@
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import faker from 'faker'
 import React, { Component } from 'react'
 import { Search, Label } from 'semantic-ui-react'
 import API from '../api/api'
 import {Link} from 'react-router-dom'
-
-const source = _.times(5, () => ({
-  title: faker.company.companyName(),
-  description: faker.company.catchPhrase(),
-  image: faker.internet.avatar(),
-  price: faker.finance.amount(0, 100, 2, '$'),
-}))
 
 const resultRenderer = ({ name }) => <Label content={name} />
 
@@ -27,7 +19,8 @@ export default class SearchExampleStandard extends Component {
             isLoading: false, 
             results: [], 
             value: '' ,
-            Hotel : []
+            Hotel : [],
+            link_id : ""
         }
     }
     componentDidMount(){
@@ -40,7 +33,7 @@ export default class SearchExampleStandard extends Component {
             }
         })
     }
-  handleResultSelect = (e, { result }) => this.setState({ value: result.name })
+  handleResultSelect = (e, { result }) => this.setState({ value: result.name, link_id : result._id })
 
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value })
@@ -49,7 +42,7 @@ export default class SearchExampleStandard extends Component {
       if (this.state.value.length < 1) return this.setState(start)
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = (result) => re.test(result.name)
+      const isMatch = (result) =>  re.test(result.name, result._id)
 
       this.setState({
         isLoading: false,
@@ -78,7 +71,9 @@ export default class SearchExampleStandard extends Component {
                     {...this.props}
                     />
                     <br></br>
-                    <button className="btn btn-primary">Serach</button>
+                    <Link to={`/hotel/${this.state.link_id}`}>
+                        <button className="btn btn-primary">Serach</button>
+                    </Link>
               </div>
           </div>
     )

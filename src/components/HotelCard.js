@@ -8,7 +8,7 @@ export default class HotelCard extends Component {
     render() {
         return (
             <div>
-                <div className="card">
+                <div className="card mt-4">
                 <div className="cardImage">
                     <img src={this.props.image} alt="Hotelpic"></img>
                 </div>

@@ -53,7 +53,6 @@ export default class Addroom extends Component {
                     showHotel : ""
                 })
             }
-            console.log(this.state.loadHotel)
         })
     }
     renderRoom = () =>{
@@ -126,6 +125,16 @@ export default class Addroom extends Component {
                 })
             })
         })        
+    }
+    handleDelete = () =>{
+        const {userEmail} = this.state 
+        API.post("/management/deletePost", {userEmail})
+        .then(res => {
+            if(res){
+                alert("Deleted")
+                window.location.reload()
+            }
+        })
     }
     render() {
         const ShowAdd = {
@@ -218,8 +227,7 @@ export default class Addroom extends Component {
                                         <p>Contact : {datas.contact}</p>
                                         <p>Location : {datas.location}</p>
                                         <p>Create post : {datas.Create}</p>
-                                        <button className="btn btn-primary">Edit data</button>
-                                        <button className="btn btn-danger ml-2">Delete data</button>
+                                        <button onClick={this.handleDelete} className="btn btn-danger ml-2">Delete data</button>
                                     </div>
                                     <div className="col-sm-3 col-12 mt-4 room">
                                         <p>Small room</p>

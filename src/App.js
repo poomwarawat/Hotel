@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './components/layouts/Header'
-import {Route} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 import Home from './page/Home'
 import About from './page/About'
 import Contact from './page/Contact'
@@ -17,13 +17,14 @@ import HotelPage from './page/HotelPage'
 import Booking from './page/Booking'
 import Mybooking from './page/Mybooking'
 import Footer from './components/layouts/Footer'
+import NotFound from './page/NotFound'
 
 class App extends Component{
   render(){
     return (
       <div className="App">
         <Header></Header>
-        <div>
+        <Switch>
           <Route path="/" component={Home} exact></Route>
           <Route path="/about" component={About}></Route>
           <PrivateRoute path="/management_panel" component={Management} exact></PrivateRoute>
@@ -37,7 +38,8 @@ class App extends Component{
           <Route path="/admin_register" component={AdminRegister}></Route>
           <Route path="/hotel/:id" component={HotelPage} exact></Route>
           <PrivateRoute path="/hotel/:id/:type" component={Booking}></PrivateRoute>
-        </div>
+          <Route path='*' component={NotFound}></Route>
+        </Switch>
         <Footer></Footer>
       </div>
     );
