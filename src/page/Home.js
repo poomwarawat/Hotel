@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Picslide from '../components/Picslide'
 import API from '../api/api'
 import HotelCard from '../components/HotelCard'
-import Footer from '../components/layouts/Footer'
+import Search from '../components/Search'
 
 export default class Home extends Component {
     constructor(props){
@@ -26,6 +26,11 @@ export default class Home extends Component {
             <div>
                 <Picslide></Picslide>
                 <div className="container mt-4">
+                    <div className="searchComp">
+                        <div>
+                            <Search></Search>
+                        </div>
+                    </div>
                 <div className="row">
                     {
                         this.state.Hotel.map((Hotels) =>{
@@ -42,7 +47,6 @@ export default class Home extends Component {
                     }
                 </div>
                 </div>
-                <Footer></Footer>
             </div>
         )
     }

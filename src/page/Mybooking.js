@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import API from '../api/api'
-import Footer from '../components/layouts/Footer'
 
 export default class Mybooking extends Component {
     constructor(props){
@@ -61,7 +60,6 @@ export default class Mybooking extends Component {
                     </div>
                     </div>
                 </div>
-                <Footer></Footer>
             </div>
         )
     }

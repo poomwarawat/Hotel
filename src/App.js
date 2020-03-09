@@ -16,6 +16,7 @@ import AdminRegister from './page/AdminRegister'
 import HotelPage from './page/HotelPage'
 import Booking from './page/Booking'
 import Mybooking from './page/Mybooking'
+import Footer from './components/layouts/Footer'
 
 class App extends Component{
   render(){
@@ -34,9 +35,10 @@ class App extends Component{
           <Route path="/signin" component={SignIn}></Route>
           <Route path="/register" component={Register}></Route>
           <Route path="/admin_register" component={AdminRegister}></Route>
-          <PrivateRoute path="/hotel/:id" component={HotelPage} exact></PrivateRoute>
+          <Route path="/hotel/:id" component={HotelPage} exact></Route>
           <PrivateRoute path="/hotel/:id/:type" component={Booking}></PrivateRoute>
         </div>
+        <Footer></Footer>
       </div>
     );
   }

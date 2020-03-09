@@ -47,20 +47,6 @@ class SignIn extends Component {
             <div className="SignIn">
                 <div className="container">
                     <div className="row">
-                        <div className="col-sm-8 col-12">
-                            <div className="spaceCreate">
-                            <div className="jumbotron">
-                                <h3>Create your hotel on Travel Booking</h3>
-                                <p className="lead">The best Hotel booking in Thailand</p>
-                                <p className="lead">More then 10 million users</p>                        
-                                <p className="lead">Easy to payment</p>
-                                <hr className="my-4"></hr>                                                             
-                                <Link to="/admin_register">
-                                    <button className="btn btn-primary">Join with us</button>
-                                </Link>
-                            </div>
-                            </div>
-                        </div>
                         <div className="col-sm-4 col-12 sign">
                             <div className="signinbox">
                                 <h1>SignIn</h1>
@@ -70,13 +56,27 @@ class SignIn extends Component {
                                 <input required type="password" name="password" placeholder="Enter your password" className="form-control" onChange={this.handleChange}></input><br></br>
                                 <button className="btn btn-primary w-100" onClick={this.handleClick}>SignIn</button>
                             </div><br></br>
-                            <div className="float-right">
+                            <div className="float-left">
                                 <Link to='/register'>
                                     <p>Create Account.</p>
                                 </Link>
                             </div><br></br>
                             <div className="errmsg">
                                 <p>{this.state.error}</p>
+                            </div>
+                        </div>
+                        <div className="col-sm-8 col-12">
+                            <div className="spaceCreate">
+                            <div className="jumbotron">
+                                <h3>Create your hotel on Travel Booking</h3>
+                                <p className="lead">The best Hotel booking in Thailand</p>
+                                <p className="lead">More then 10 million users</p>                        
+                                <p className="lead">Easy to payment</p>
+                                <hr className="my-4"></hr>                                                             
+                                <Link to="/admin_register" className="float-right">
+                                    <button className="btn btn-primary mt-4">Join with us</button>
+                                </Link>
+                            </div>
                             </div>
                         </div>
                     </div>

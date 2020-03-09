@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import API from '../api/api'
-import Footer from '../components/layouts/Footer'
 import {Link} from 'react-router-dom'
 
 export default class HotelPage extends Component {
@@ -86,7 +85,6 @@ export default class HotelPage extends Component {
                             </div>
                         </div>
                 </div>
-                <Footer></Footer>
             </div>
         )
     }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Footer from '../components/layouts/Footer'
 import API from '../api/api'
 
 export default class StatusRoom extends Component {
@@ -60,7 +59,6 @@ export default class StatusRoom extends Component {
                         </table> 
                     </div>
                 </div>
-                <Footer></Footer>
             </div>
         )
     }

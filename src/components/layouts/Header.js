@@ -12,7 +12,6 @@ export default class Header extends Component {
                         {localStorage.getItem("email")}
                     </button>
                     <div className="dropdown-menu dropdown-menu-right">
-                        <button className="dropdown-item">Profile setting</button>
                         <Link to="/Mybooking">
                             <button className="dropdown-item">My booking</button>
                         </Link>
@@ -32,7 +31,6 @@ export default class Header extends Component {
                             <Link to="/management_panel">
                                 <button className="dropdown-item" >Admin management</button>
                             </Link>
-                            <button className="dropdown-item" type="button">Profile setting</button>
                             <Link to="/Mybooking">
                                 <button className="dropdown-item">My booking</button>
                             </Link>

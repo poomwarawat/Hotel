@@ -1,23 +1,29 @@
 {
   "name": "hotel",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
+    "faker": "^4.1.0",
     "filepond-plugin-image-preview": "^4.6.1",
     "firebase": "^7.10.0",
     "firebase-tools": "^7.14.0",
+    "lodash": "^4.17.15",
+    "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-filepond": "^7.0.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
+    "react-search": "^2.1.1",
+    "react-search-field": "^1.0.0",
     "reactstrap": "^8.4.1",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "semantic-ui-react": "^0.88.2"
   },
   "scripts": {
     "start": "react-scripts start",
