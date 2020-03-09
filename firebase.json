@@ -1,14 +1,20 @@
 {
   "hosting": {
+    "rewrites" : [{
+      "source": "!{/bower_components,/src}/**",
+      "destination" : "/index.html"
+    }],
     "public": "build",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites" : [{
-      "source" : "**",
-      "destination" : "/index.html"
-    }]
+    "headers": [
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png|css|js|jsx|scss|ttc|woff)",
+        "headers": [{ "key": "Cache-Control", "value": "no-cache" }] 
+      }
+    ]
   }
 }
