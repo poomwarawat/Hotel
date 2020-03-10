@@ -34,8 +34,9 @@ export default class Mybooking extends Component {
                         <th scope="col">Details</th>
                         <th scope="col">Price</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Date</th>
+                        <th scope="col">Note</th>
+                        <th scope="col">Checkin</th>
+                        <th scope="col">Checkin</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,7 +49,8 @@ export default class Mybooking extends Component {
                                         <td>{datas.Price}</td>
                                         <td>{datas.Email}</td>
                                         <td>{datas.Name}</td>
-                                        <td>{datas.Date}</td>
+                                        <td>{datas.StartDate}</td>
+                                        <td>{datas.EndDate}</td>
                                     </tr>
                                 )
                             })

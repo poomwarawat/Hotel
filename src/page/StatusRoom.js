@@ -36,10 +36,11 @@ export default class StatusRoom extends Component {
                         <table className="table table-striped table-dark">
                         <thead>
                             <tr>
-                            <th scope="col">Name</th>
+                            <th scope="col">Note</th>
                             <th scope="col">Email</th>
                             <th scope="col">Details</th>
-                            <th scope="col">Date</th>
+                            <th scope="col">Checkin</th>
+                            <th scope="col">Checkout</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,7 +51,8 @@ export default class StatusRoom extends Component {
                                         <th scope="row">{datas.Name}</th>
                                         <td>{datas.Email}</td>
                                         <td>{datas.Details}</td>
-                                        <td>{datas.Date}</td>
+                                        <td>{datas.StartDate}</td>
+                                        <td>{datas.EndDate}</td>
                                     </tr>
                                 )
                             })
